@@ -15,14 +15,18 @@ class module_controller {
     static $view;
     static $ok;
     //static $customerror;
-    static $module_db = 'zpanel_xbilling';
-    static $server_app = 'zpanel';
+    static $module_db = 'sentora_xbilling';
+    static $server_app = 'sentora';
     static $server_vars = array();
 
 
     public function __construct(){
         require_once('serverware.php');
-        self::getAppWare();
+        self::$server_vars = self::getAppWare();
+        if(count(server_vars)){
+           self::$server_app = self::$server_vars['app'];
+           self::$module_db = self::$server_vars['app'].'_xbilling';
+        }
     }
 
    
